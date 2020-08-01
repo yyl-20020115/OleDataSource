@@ -2,6 +2,15 @@
 #include <ShlObj.h>
 #include <tchar.h>
 #include <stdio.h>
+
+void Log(const TCHAR* message) {
+	FILE* f = _tfopen(_T("log.txt"), _T("a+"));
+	if (f != nullptr) {
+		_ftprintf(f, _T("%s\n"), message);
+		fclose(f);
+	}
+}
+
 long GetFileLength(const TCHAR* path)
 {
 	int length = 0;
@@ -13,6 +22,10 @@ long GetFileLength(const TCHAR* path)
 	}
 	return length;
 }
+void PutFilesIntoClipboard(const TCHAR** paths, ULONGLONG* sizes, int count) {
+
+}
+
 HGLOBAL PutIntoClipboard(const TCHAR* path)
 {
 	CMyOleDataSource* pDataSrc = new CMyOleDataSource();
@@ -72,7 +85,7 @@ HGLOBAL PutIntoClipboard(const TCHAR* path)
 		CFSTR_FILEDESCRIPTOR), hFileDescriptor, &etcDescriptor);
 
 	FORMATETC etcContents = {
-		(CLIPFORMAT)RegisterClipboardFormat(CFSTR_FILECONTENTS),
+		(CLIPFORMAT) (CFSTR_FILECONTENTS),
 		NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL };
 	pDataSrc->DelayRenderFileData(RegisterClipboardFormat(
 		CFSTR_FILECONTENTS), &etcContents);

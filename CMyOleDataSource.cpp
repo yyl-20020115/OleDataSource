@@ -47,3 +47,4 @@ BOOL CMyOleDataSource::OnRenderData(LPFORMATETC lpFormatEtc, LPSTGMEDIUM lpStgMe
 	}
 	return ret;
 }
+ 

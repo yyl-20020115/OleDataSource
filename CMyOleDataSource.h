@@ -1,7 +1,8 @@
 #pragma once
 #include "COleDataSource.h"
 
-class CMyOleDataSource : public COleDataSource
+class CMyOleDataSource 
+	: public COleDataSource
 {
 public:
 	CMyOleDataSource();

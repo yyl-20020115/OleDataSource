@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="CEnumFORMATETC.h" />
     <ClInclude Include="CMyOleDataSource.h" />
+    <ClInclude Include="CMyOleDropTarget.h" />
     <ClInclude Include="CMyOleStream.h" />
     <ClInclude Include="COleDataSource.h" />
     <ClInclude Include="COleDropSource.h" />
@@ -154,6 +155,7 @@
   <ItemGroup>
     <ClCompile Include="CEnumFORMATETC.cpp" />
     <ClCompile Include="CMyOleDataSource.cpp" />
+    <ClCompile Include="CMyOleDropTarget.cpp" />
     <ClCompile Include="CMyOleStream.cpp" />
     <ClCompile Include="COleDataSource.cpp" />
     <ClCompile Include="COleDropSource.cpp" />
@@ -182,6 +184,7 @@
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="log.txt" />
     <Text Include="README.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

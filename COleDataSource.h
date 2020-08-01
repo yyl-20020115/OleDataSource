@@ -12,7 +12,8 @@ struct ODS_DATACACHE_ENTRY
 	DATADIR m_nDataDir;
 };
 
-class COleDataSource : public IDataObject
+class COleDataSource 
+	: public IDataObject
 {
 public:
 	static COleDataSource* CurrentClipboardSource;

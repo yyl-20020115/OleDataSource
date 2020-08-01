@@ -3,7 +3,8 @@
 
 typedef DWORD DROPEFFECT;
 
-class COleDropSource : IDropSource
+class COleDropSource 
+	: public IDropSource
 {
 public:
 

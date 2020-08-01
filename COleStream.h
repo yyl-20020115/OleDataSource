@@ -2,7 +2,8 @@
 
 #include <objidl.h>
 
-class COleStream : public IStream
+class COleStream 
+    : public IStream
 {
 public:
 

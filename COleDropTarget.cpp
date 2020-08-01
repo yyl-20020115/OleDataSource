@@ -52,6 +52,7 @@ COleDropTarget::~COleDropTarget()
 
 HRESULT __stdcall COleDropTarget::DragEnter(IDataObject* pDataObj, DWORD grfKeyState, POINTL pt, DWORD* pdwEffect)
 {
+	
 	*pdwEffect = DROPEFFECT_NONE;
 	return S_OK;
 }

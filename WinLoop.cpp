@@ -4,13 +4,20 @@
 #include "framework.h"
 #include "WinLoop.h"
 #include <ShlObj.h>
-
+#include "CMyOleDropTarget.h"
 #define MAX_LOADSTRING 100
+//WINOLEAPI RegisterDragDrop(
+//    HWND           hwnd,          // Handle to a window that can accept drops
+//    IDropTarget* pDropTarget // Pointer to object that is to be target of drop
+//);
 
 // 全局变量:
 HINSTANCE hInst;                                // 当前实例
 WCHAR szTitle[MAX_LOADSTRING];                  // 标题栏文本
 WCHAR szWindowClass[MAX_LOADSTRING];            // 主窗口类名
+//OLEDROPTARGET
+CMyOleDropTarget* pMyOleDropTarget = nullptr;
+
 
 // 此代码模块中包含的函数的前向声明:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -29,6 +36,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // Initialize COM and OLE
     if (OleInitialize(0) != S_OK)
         return 0;
+    
+    //OLEDROPTARGET
+    pMyOleDropTarget = new CMyOleDropTarget();
+
 
     // 初始化全局字符串
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -54,6 +65,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             DispatchMessage(&msg);
         }
     }
+
+
     // Cleanup
     OleUninitialize();
 
@@ -109,6 +122,13 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    {
       return FALSE;
    }
+   //OLEDROPTARGET
+   HRESULT hr = RegisterDragDrop(hWnd, pMyOleDropTarget);
+    if (S_OK == hr)
+    {
+        //OLEDROPTARGET
+        Log(_T("DropTarget registered!"));
+    }
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
@@ -159,6 +179,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         }
         break;
     case WM_DESTROY:
+        //OLEDROPTARGET
+        if (pMyOleDropTarget != nullptr) {
+            if (S_OK ==RevokeDragDrop(hWnd)) {
+                pMyOleDropTarget->Release();
+                Log(_T("DropTarget revoked and released!"));
+                pMyOleDropTarget = nullptr;
+            }
+        }
         PostQuitMessage(0);
         break;
     default:

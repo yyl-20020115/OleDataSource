@@ -48,6 +48,9 @@
     <ClInclude Include="CMyOleStream.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CMyOleDropTarget.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="COleDataSource.cpp">
@@ -77,6 +80,9 @@
     <ClCompile Include="CMyOleStream.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CMyOleDropTarget.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OleDataSource.rc">
@@ -98,5 +104,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.txt" />
+    <Text Include="log.txt" />
   </ItemGroup>
 </Project>
